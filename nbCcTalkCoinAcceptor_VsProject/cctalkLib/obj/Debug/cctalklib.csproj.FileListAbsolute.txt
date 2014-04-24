@@ -17,3 +17,14 @@ C:\Users\Nikola\Desktop\nbBillCoinAcceptor\nbCcTalkCoinAcceptor\nbCcTalkCoinAcce
 C:\Users\Nikola\Desktop\nbBillCoinAcceptor\nbCcTalkCoinAcceptor\nbCcTalkCoinAcceptor\cctalkLib\bin\Debug\CctalkLib.dll
 C:\Users\Nikola\Desktop\nbBillCoinAcceptor\nbCcTalkCoinAcceptor\nbCcTalkCoinAcceptor\cctalkLib\bin\Debug\CctalkLib.pdb
 C:\Users\Nikola\Desktop\nbBillCoinAcceptor\nbCcTalkCoinAcceptor\nbCcTalkCoinAcceptor\cctalkLib\obj\Debug\CctalkLib.pdb
+C:\Users\Luigi\Desktop\New folder\nbCcTalkCoinAcceptor_VsProject\cctalkLib\bin\Debug\CctalkLib.dll
+C:\Users\Luigi\Desktop\New folder\nbCcTalkCoinAcceptor_VsProject\cctalkLib\bin\Debug\CctalkLib.pdb
+C:\Users\Luigi\Desktop\New folder\nbCcTalkCoinAcceptor_VsProject\cctalkLib\obj\Debug\CctalkLib.dll
+C:\Users\Luigi\Desktop\New folder\nbCcTalkCoinAcceptor_VsProject\cctalkLib\obj\Debug\CctalkLib.pdb
+C:\Users\Luigi\Desktop\New folder\nbCcTalkCoinAcceptor_VsProject\cctalkLib\obj\Debug\cctalklib.csprojResolveAssemblyReference.cache
+C:\Users\Luigi\Documents\developing\Current\CCTalk\nbCcTalkCoinAcceptor_VsProject\cctalkLib\obj\Debug\CctalkLib.dll
+C:\Users\Luigi\Documents\developing\Current\CCTalk\nbCcTalkCoinAcceptor_VsProject\cctalkLib\bin\Debug\CctalkLib.dll
+C:\Users\Luigi\Documents\developing\Current\CCTalk\nbCcTalkCoinAcceptor_VsProject\cctalkLib\bin\Debug\CctalkLib.pdb
+C:\Users\Luigi\Documents\developing\Current\CCTalk\nbCcTalkCoinAcceptor_VsProject\cctalkLib\obj\Debug\CctalkLib.pdb
+C:\Users\Luigi\Documents\developing\Current\CCTalk\nbCcTalkCoinAcceptor_VsProject\cctalkLib\bin\Debug\log4net.dll
+C:\Users\Luigi\Documents\developing\Current\CCTalk\nbCcTalkCoinAcceptor_VsProject\cctalkLib\obj\Debug\cctalklib.csprojResolveAssemblyReference.cache

@@ -14,5 +14,6 @@
         protected abstract uint ComputeChecksum(byte[] bytes);
 
         #endregion
+
     }
 }

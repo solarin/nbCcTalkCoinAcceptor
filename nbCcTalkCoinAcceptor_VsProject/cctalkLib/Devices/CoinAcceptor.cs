@@ -66,7 +66,7 @@ namespace dk.CctalkLib.Devices
                 foreach (var coin in coins)
                     _coins[coin.Key] = coin.Value;
 
-            _allowedCoins = CoinIndex.All;
+            _allowedCoins = CoinIndex.None;
         }
 
         /// <summary>
@@ -108,19 +108,25 @@ namespace dk.CctalkLib.Devices
         {
             _rawDev.Connection.Open();
 
+            var res = _rawDev.CmdSimplePoll();
+
             DeviceCategory = _rawDev.CmdRequestEquipmentCategory();
             if (DeviceCategory != CctalkDeviceTypes.CoinAcceptor)
                 throw new InvalidOperationException("Connected device is not a coin acceptor. " + DeviceCategory);
 
+            ProductCode = _rawDev.CmdRequestProductCode();
+            SerialNumber = _rawDev.CmdGetSerial();
+            Manufacturer = _rawDev.CmdRequestManufacturerId();
+            PollInterval = _rawDev.CmdRequestPollingPriority();
+
+            _rawDev.CmdModifyInhibitStatus(0, 0);
+
             //_rawDev.CmdReset();			
-            _rawDev.CmdSetMasterInhibitStatus(IsInhibiting);
+            //_rawDev.CmdSetMasterInhibitStatus(IsInhibiting);
 
             //throw new InvalidOperationException("Msg: " + _rawDev.CmdGetMasterInhibitStatus().ToString()); - vraca false znaci da neInhibira.
 
-            SerialNumber = _rawDev.CmdGetSerial();
-            PollInterval = _rawDev.CmdRequestPollingPriority();
-            Manufacturer = _rawDev.CmdRequestManufacturerId();
-            ProductCode = _rawDev.CmdRequestProductCode();
+            var sp = _rawDev.CmdRequestStatus();
 
             var evBuf = _rawDev.CmdReadEventBuffer();
 
@@ -129,6 +135,10 @@ namespace dk.CctalkLib.Devices
                 RaiseLastEvents(evBuf);
             }
             _lastEvent = evBuf.Counter;
+
+            //_rawDev.TestSolenoids();
+
+            //_rawDev.TestOutputLines();
 
             IsInitialized = true;
         }
@@ -278,6 +288,16 @@ namespace dk.CctalkLib.Devices
             return status;
         }
 
+        public bool TestSolenoids()
+        {
+            return _rawDev.TestSolenoids();
+        }
+
+        public bool TestOutputLines()
+        {
+            return _rawDev.TestOutputLines();
+        }
+
         /// <summary>
         /// Remembers current state of device`s event buffer as empty.
         /// All unread events in buffer will be discarded.
@@ -309,7 +329,17 @@ namespace dk.CctalkLib.Devices
                 //if(_t == null) return;
                 try
                 {
+                    /*
+                    var buf = _rawDev.CmdSimplePoll();
+
+                    Console.WriteLine("read: " + buf.DataLength);
+                     * */
+
+                    
                     var buf = _rawDev.CmdReadEventBuffer();
+
+                    _rawDev.CmdRequestInhibitStatus();
+                    //Console.WriteLine(buf.Events[0].CoinCode.ToString());
 
                     var wasReset = buf.Counter == 0;
                     if (wasReset)
@@ -344,7 +374,12 @@ namespace dk.CctalkLib.Devices
 
         private void RaiseLastEvents(DeviceEventBuffer buf)
         {
-            var newEventsCount = GetNewEventsCountHelper(_lastEvent, buf.Counter);
+            var newEventsCount = GetNewEventsCountHelper(_lastEvent, buf.Counter);   
+            if(_lastEvent + newEventsCount < buf.Counter)
+            {
+                Console.WriteLine("lost messages: " + (buf.Counter - _lastEvent - newEventsCount));
+            }
+            Console.WriteLine("Event counter: " + buf.Counter);
             _lastEvent = buf.Counter;
             RaiseEventsByBufferHelper(buf, newEventsCount);
         }

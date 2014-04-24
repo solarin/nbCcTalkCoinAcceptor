@@ -27,7 +27,7 @@ namespace dk.CctalkLib.Devices
 
 		public new DeviceEventBuffer CmdReadEventBuffer()
 		{
-			var msg = CreateMessage(159);
+			var msg = CreateMessage(CctalkCommands.ReadBufferedBillEvents);
 			var respond = Connection.Send(msg, _checksumHandler);
 
 			if (respond.DataLength < 11)
@@ -73,7 +73,7 @@ namespace dk.CctalkLib.Devices
 
 		public new CctalkDeviceStatus CmdRequestStatus()
 		{
-			var msg = CreateMessage(236);
+            var msg = CreateMessage(CctalkCommands.ReadOptoStates);
 
 			var respond = Connection.Send(msg, _checksumHandler);
 			if (respond.DataLength < 2)
@@ -85,7 +85,7 @@ namespace dk.CctalkLib.Devices
 		public bool CmdModifyBillOpertingMode(Byte mode)
 		{
 			bool ret = false;
-			Messages.CctalkMessage msg = CreateMessage(153);
+			Messages.CctalkMessage msg = CreateMessage(CctalkCommands.ModifyBillOperatingMode);
 			msg.Data = new Byte[] { mode };  //two bits on, for enable the stacker and the escrow simultaneously
 			var respond = Connection.Send(msg, _checksumHandler);
 

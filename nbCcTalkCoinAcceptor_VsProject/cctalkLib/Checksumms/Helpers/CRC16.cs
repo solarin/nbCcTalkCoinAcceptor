@@ -46,6 +46,6 @@
                 crc = (ushort)((crc >> 8) ^ table[index]);
             }
             return crc;
-        }
+        } 
     }
 }

@@ -33,14 +33,15 @@
             this.cbInhibit = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.labTotalMoneyIn = new System.Windows.Forms.Label();
-            this.txtPortNumber = new System.Windows.Forms.TextBox();
             this.txtLog = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.btPollNow = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnConnectToCA
             // 
-            this.btnConnectToCA.Location = new System.Drawing.Point(82, 8);
+            this.btnConnectToCA.Location = new System.Drawing.Point(179, 9);
             this.btnConnectToCA.Name = "btnConnectToCA";
             this.btnConnectToCA.Size = new System.Drawing.Size(75, 23);
             this.btnConnectToCA.TabIndex = 0;
@@ -51,7 +52,7 @@
             // cbPolling
             // 
             this.cbPolling.AutoSize = true;
-            this.cbPolling.Location = new System.Drawing.Point(163, 12);
+            this.cbPolling.Location = new System.Drawing.Point(260, 41);
             this.cbPolling.Name = "cbPolling";
             this.cbPolling.Size = new System.Drawing.Size(95, 17);
             this.cbPolling.TabIndex = 2;
@@ -62,7 +63,7 @@
             // cbInhibit
             // 
             this.cbInhibit.AutoSize = true;
-            this.cbInhibit.Location = new System.Drawing.Point(264, 12);
+            this.cbInhibit.Location = new System.Drawing.Point(260, 13);
             this.cbInhibit.Name = "cbInhibit";
             this.cbInhibit.Size = new System.Drawing.Size(106, 17);
             this.cbInhibit.TabIndex = 3;
@@ -73,7 +74,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(376, 13);
+            this.label1.Location = new System.Drawing.Point(376, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 13);
             this.label1.TabIndex = 4;
@@ -82,30 +83,21 @@
             // labTotalMoneyIn
             // 
             this.labTotalMoneyIn.AutoSize = true;
-            this.labTotalMoneyIn.Location = new System.Drawing.Point(464, 13);
+            this.labTotalMoneyIn.Location = new System.Drawing.Point(464, 12);
             this.labTotalMoneyIn.Name = "labTotalMoneyIn";
             this.labTotalMoneyIn.Size = new System.Drawing.Size(0, 13);
             this.labTotalMoneyIn.TabIndex = 5;
-            // 
-            // txtPortNumber
-            // 
-            this.txtPortNumber.Location = new System.Drawing.Point(43, 10);
-            this.txtPortNumber.Name = "txtPortNumber";
-            this.txtPortNumber.Size = new System.Drawing.Size(33, 20);
-            this.txtPortNumber.TabIndex = 6;
-            this.txtPortNumber.Text = "3";
-            this.txtPortNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtLog
             // 
             this.txtLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLog.Location = new System.Drawing.Point(11, 39);
+            this.txtLog.Location = new System.Drawing.Point(11, 66);
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtLog.Size = new System.Drawing.Size(483, 340);
+            this.txtLog.Size = new System.Drawing.Size(671, 313);
             this.txtLog.TabIndex = 1;
             // 
             // label2
@@ -118,13 +110,32 @@
             this.label2.Text = "Port:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(43, 9);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 8;
+            // 
+            // btPollNow
+            // 
+            this.btPollNow.Location = new System.Drawing.Point(179, 37);
+            this.btPollNow.Name = "btPollNow";
+            this.btPollNow.Size = new System.Drawing.Size(75, 23);
+            this.btPollNow.TabIndex = 9;
+            this.btPollNow.Text = "Poll now";
+            this.btPollNow.UseVisualStyleBackColor = true;
+            this.btPollNow.Click += new System.EventHandler(this.button1_Click);
+            // 
             // nbCoinAcceptor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(501, 391);
+            this.ClientSize = new System.Drawing.Size(689, 391);
+            this.Controls.Add(this.btPollNow);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtPortNumber);
             this.Controls.Add(this.labTotalMoneyIn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbInhibit);
@@ -145,9 +156,10 @@
         private System.Windows.Forms.CheckBox cbInhibit;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labTotalMoneyIn;
-        private System.Windows.Forms.TextBox txtPortNumber;
         private System.Windows.Forms.TextBox txtLog;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button btPollNow;
     }
 }
 

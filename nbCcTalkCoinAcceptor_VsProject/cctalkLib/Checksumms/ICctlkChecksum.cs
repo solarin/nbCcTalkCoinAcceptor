@@ -1,4 +1,5 @@
-﻿using System;
+﻿using dk.CctalkLib.Checksumms.Helpers;
+using System;
 
 namespace dk.CctalkLib.Checksumms
 {
@@ -13,10 +14,11 @@ namespace dk.CctalkLib.Checksumms
         CRC = 2
     }
 
-    public interface ICctalkChecksum
+    public interface ICctalkChecksum 
     {
         void CalcAndApply(Byte[] messageInBytes);
 		Boolean Check(Byte[] messageInBytes, Int32 offset, Int32 length);
 
+        CRCType CRCType { get; set; }
     }
 }

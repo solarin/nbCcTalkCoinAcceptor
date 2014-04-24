@@ -45,5 +45,6 @@ namespace dk.CctalkLib.Checksumms.Helpers
             }
             return ~crc;
         }
+         
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using dk.CctalkLib.Devices;
+using System;
 
 namespace dk.CctalkLib.Messages
 {
@@ -35,7 +36,7 @@ namespace dk.CctalkLib.Messages
 		/// <summary>
 		///  Message header. Command or respond code.
 		/// </summary>
-        public Byte Header { get; set; }
+        public CctalkCommands Header { get; set; }
 
 		/// <summary>
 		///  Dete for message. Format depends on header.
@@ -63,7 +64,7 @@ namespace dk.CctalkLib.Messages
             msg[PosDestAddr] = DestAddr;
             msg[PosDataLen] = msgDataLen;
             msg[PosSourceAddr] = SourceAddr;
-            msg[PosHeader] = Header;
+            msg[PosHeader] = (byte)Header;
 
             if (msgData!= null && msgDataLen > 0)
                 Array.Copy(msgData, 0, msg, PosDataStart, msgData.Length);

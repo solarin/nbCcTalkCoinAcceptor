@@ -1,8 +1,9 @@
 ﻿using System;
 
 namespace dk.CctalkLib.Checksumms
-{
-    public class Checksum : ICctalkChecksum
+{/*
+    
+    public class Checksum 
     {
         private static byte ChecksumHelper(byte[] source)
         {
@@ -39,14 +40,15 @@ namespace dk.CctalkLib.Checksumms
             messageInBytes[checksumPlace] = retByte;
         }
 
+        
 		public bool Check(byte[] messageInBytes, int offset, int length)
 		{
-			var cpy = new Byte[length];
-			Array.Copy(messageInBytes, offset, cpy, 0, length);
-			var res = ChecksumHelper(cpy);
-			return res == 0;
+            var cpy = new Byte[length];
+            Array.Copy(messageInBytes, offset, cpy, 0, length);
+            return ChecksumHelper(cpy) == 0;
 		}
 
     	#endregion
-    }
+         
+    }*/
 }

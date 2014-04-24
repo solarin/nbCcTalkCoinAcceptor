@@ -45,6 +45,6 @@
                 crc = (ushort)((crc << 8) ^ table[((crc >> 8) ^ (0xff & bytes[i]))]);
             }
             return crc;
-        }
+        } 
     }
 }

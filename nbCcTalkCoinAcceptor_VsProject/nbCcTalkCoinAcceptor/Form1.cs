@@ -23,29 +23,44 @@ namespace nbCcTalkCoinAcceptor
         public nbCoinAcceptor()
         {
             InitializeComponent();
+            comboBox1.Items.AddRange(SerialPort.GetPortNames());
         }
 
         public void btnConnectToCA_Click(object sender, EventArgs e)
         {
-            if (ConnectToCoinAcceptor())
+            if (_coinAcceptor != null && _coinAcceptor.IsInitialized)
             {
-                txtLog.Text += "Successfully connected to coin acceptor!" + newline;
-
-                if (ModifyCoinAcceptorInhibitStatus())
-                {
-                    txtLog.Text += "Successfully modified the inhibit status!" + newline;
-                }
-                else
-                {
-                    txtLog.Text += "Error while modifying the inhibit status!" + newline;
-                }
+                _coinAcceptor.Dispose();
+                _coinAcceptor = null;
+                btnConnectToCA.Text = "Connect";
+                cbInhibit.Checked = cbPolling.Checked = false;
             }
             else
             {
-                txtLog.Text += "Error while connecting to coin acceptor!" + newline;
-            }
+                if (ConnectToCoinAcceptor())
+                {
+                    txtLog.Text += "Successfully connected to coin acceptor!" + newline;
+                    _coinAcceptor.AllowedCoins = CoinIndex.All;
+                    //if (ModifyCoinAcceptorInhibitStatus())
+                    //{
+                    //    txtLog.Text += "Successfully modified the inhibit status!" + newline;
+                    //}
+                    //else
+                    //{
+                    //    txtLog.Text += "Error while modifying the inhibit status!" + newline;
+                    //}
+                    btnConnectToCA.Text = "Disconnect";
+                }
+                else
+                {
+                    txtLog.Text += "Error while connecting to coin acceptor!" + newline;
+                }
 
-            _coinAcceptor.AllowedCoins = CoinIndex.One | CoinIndex.Two | CoinIndex.Three;
+                //CctalkDeviceStatus sta = _coinAcceptor.GetStatus();
+                //txtLog.Text += sta.ToString();            
+
+                   _coinAcceptor.AllowedCoins = CoinIndex.All;// CoinIndex.One | CoinIndex.Two | CoinIndex.Three;// | CoinIndex.Four | CoinIndex.Five | CoinIndex.Six;
+            }
         }
 
         private bool ConnectToCoinAcceptor()
@@ -64,7 +79,7 @@ namespace nbCcTalkCoinAcceptor
 
             try
             {
-                string port = "COM" + txtPortNumber.Text;
+                string port = comboBox1.SelectedItem == null ? "" : comboBox1.SelectedItem.ToString();
                 var connection = new ConnectionRs232
                                      {
                                          PortName = port,
@@ -80,13 +95,13 @@ namespace nbCcTalkCoinAcceptor
 
                 _coinAcceptor.Init(true);
 
-              
 
                 if (_coinAcceptor.IsInitialized)
                 {
-                    txtLog.Text += "Successfully initialized the CoinAcceptor!" + newline;
+                    txtLog.Text += "Successfully initialized the CoinAcceptor!" + newline;                   
                     return true;
                 }
+
 
                 txtLog.Text += "Failed initializing the CoinAcceptor!" + newline;
                 DisposeCoinAcceptor();
@@ -178,7 +193,9 @@ namespace nbCcTalkCoinAcceptor
                 _coinAcceptor.Init(true);
 
             if (cbPolling.Checked)
+            {
                 _coinAcceptor.StartPoll();
+            }
             else
                 _coinAcceptor.EndPoll();
         }
@@ -207,5 +224,10 @@ namespace nbCcTalkCoinAcceptor
             _coinAcceptor.IsInhibiting = false;
         }
         #endregion
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            _coinAcceptor.PollNow();
+        }
     }
 }
